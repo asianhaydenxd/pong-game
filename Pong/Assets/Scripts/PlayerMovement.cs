@@ -4,24 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float altitude = 0f;
-    const float movementSpeed = 0.02f;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("test");
-    }
+    float altitude = 0.0f;
+    const float movementSpeed = 12.0f;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow)) altitude += movementSpeed;
-        if (Input.GetKey(KeyCode.DownArrow)) altitude -= movementSpeed;
+        if (Input.GetKey(KeyCode.UpArrow)) altitude += movementSpeed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.DownArrow)) altitude -= movementSpeed * Time.deltaTime;
 
-        if (altitude > 4) altitude = 4;
-        if (altitude < -4) altitude = -4;
+        altitude = Mathf.Clamp(altitude, -4.0f, 4.0f);
 
-        transform.position = new Vector3(-7f, altitude, 0f);
+        transform.position = new Vector3(-7.0f, altitude, 0.0f);
     }
 }
