@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    float longitude = 0.0f;
-    float altitude = 0.0f;
+    public static float longitude = 0.0f;
+    public static float altitude = 0.0f;
 
-    float longitudeSpeed = -4.0f;
+    public static float longitudeSpeed = -4.0f;
     float altitudeSpeed = 0.0f;
 
     const float speedIncrement = 0.005f;
-    const float altitudeSpeedClamp = 8.0f;
+    const float altitudeSpeedClamp = 16.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +45,7 @@ public class BallMovement : MonoBehaviour
         else
             longitudeSpeed -= speedIncrement;
 
-        altitudeSpeed += transform.position.y - trigger.transform.gameObject.transform.position.y;
+        altitudeSpeed += 3 * (transform.position.y - trigger.transform.gameObject.transform.position.y);
         
         altitudeSpeed = Mathf.Clamp(altitudeSpeed, -altitudeSpeedClamp, altitudeSpeedClamp);
     }
