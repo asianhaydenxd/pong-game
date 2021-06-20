@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    public GameObject LeftPaddle;
-    public GameObject RightPaddle;
-
-    int direction = -1;
-
     float longitude = 0.0f;
     float altitude = 0.0f;
 
-    float longitudeSpeed = 4.0f;
+    float longitudeSpeed = -4.0f;
     float altitudeSpeed = 0.0f;
 
-    bool clamping = true;
+    const float speedIncrement = 0.005f;
+    const float altitudeSpeedClamp = 8.0f;
 
+    // Start is called before the first frame update
     void Start()
     {
         altitudeSpeed = Random.Range(-1.5f,1.5f);
@@ -25,43 +22,31 @@ public class BallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        longitude += longitudeSpeed * direction * Time.deltaTime;
-        altitude += altitudeSpeed * Time.deltaTime;
 
-        if (clamping)
-        {
-        longitude = Mathf.Clamp(longitude, -6.5f, 6.5f);
-        }
+        longitude += longitudeSpeed * Time.deltaTime;
+        altitude += altitudeSpeed * Time.deltaTime;
 
         altitude = Mathf.Clamp(altitude, -4.75f, 4.75f);
 
-        if (longitude == 6.5f * direction)
-        {
-            OnCollision();
-        }
-
-        if (Mathf.Abs(altitude) == 4.75f) altitudeSpeed = -altitudeSpeed;
+        if (Mathf.Abs(altitude) == 4.75f)
+            altitudeSpeed = -altitudeSpeed;
 
         transform.position = new Vector3(longitude, altitude, 0.0f);
     }
 
-    void OnCollision()
+    void OnTriggerEnter(Collider trigger)
     {
-        if (direction == -1 & Mathf.Abs(altitude - LeftPaddle.transform.position.y) <= 1.25f)
-        {
-            direction = -direction;
-            altitudeSpeed += (altitude - LeftPaddle.transform.position.y) * 3;
-        } 
-        else if (Mathf.Abs(altitude - RightPaddle.transform.position.y) <= 1.25f)
-        {
-            direction = -direction;
-            altitudeSpeed += (altitude - RightPaddle.transform.position.y) * 3;
-        }
-        else
-        {
-            clamping = false; // Cease longitudinal restrictions
-        }
+        if (Mathf.Abs(transform.position.x) > Mathf.Abs(trigger.transform.gameObject.transform.position.x)) return;
+        
+        longitudeSpeed = -longitudeSpeed;
 
-        longitudeSpeed += 0.2f;
+        if (longitudeSpeed >= 0.0f)
+            longitudeSpeed += speedIncrement;
+        else
+            longitudeSpeed -= speedIncrement;
+
+        altitudeSpeed += transform.position.y - trigger.transform.gameObject.transform.position.y;
+        
+        altitudeSpeed = Mathf.Clamp(altitudeSpeed, -altitudeSpeedClamp, altitudeSpeedClamp);
     }
 }
