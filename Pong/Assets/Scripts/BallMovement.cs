@@ -22,7 +22,6 @@ public class BallMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         longitude += longitudeSpeed * Time.deltaTime;
         altitude += altitudeSpeed * Time.deltaTime;
 
@@ -37,6 +36,7 @@ public class BallMovement : MonoBehaviour
     void OnTriggerEnter(Collider trigger)
     {
         if (Mathf.Abs(transform.position.x) > Mathf.Abs(trigger.transform.gameObject.transform.position.x)) return;
+        if (!(trigger.name == "Left Paddle" | trigger.name == "Right Paddle")) return;
         
         longitudeSpeed = -longitudeSpeed;
 
