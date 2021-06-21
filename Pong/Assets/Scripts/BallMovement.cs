@@ -7,21 +7,31 @@ public class BallMovement : MonoBehaviour
     public static float longitude = 0.0f;
     public static float altitude = 0.0f;
 
-    public static float longitudeSpeed = -4.0f;
-    float altitudeSpeed = 0.0f;
+    public static float longitudeSpeed = 20.0f;
+    public static float altitudeSpeed = 0.0f;
 
-    const float speedIncrement = 0.005f;
+    const float speedIncrement = 0.0f;
     const float altitudeSpeedClamp = 16.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        altitudeSpeed = Random.Range(-1.5f,1.5f);
+        altitudeSpeed = Random.Range(-1.5f, 1.5f);
+        Invoke("Wait", 1);
+    }
+
+    bool wait = true;
+
+    void Wait()
+    {
+        wait = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (wait) return;
+
         longitude += longitudeSpeed * Time.deltaTime;
         altitude += altitudeSpeed * Time.deltaTime;
 
@@ -35,7 +45,7 @@ public class BallMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider trigger)
     {
-        if (Mathf.Abs(transform.position.x) > Mathf.Abs(trigger.transform.gameObject.transform.position.x)) return;
+        if (Mathf.Abs(transform.position.x) > Mathf.Abs(trigger.transform.position.x)) return;
         if (!(trigger.name == "Left Paddle" | trigger.name == "Right Paddle")) return;
         
         longitudeSpeed = -longitudeSpeed;
@@ -45,7 +55,7 @@ public class BallMovement : MonoBehaviour
         else
             longitudeSpeed -= speedIncrement;
 
-        altitudeSpeed += 3 * (transform.position.y - trigger.transform.gameObject.transform.position.y);
+        altitudeSpeed += 3 * (transform.position.y - trigger.transform.position.y);
         
         altitudeSpeed = Mathf.Clamp(altitudeSpeed, -altitudeSpeedClamp, altitudeSpeedClamp);
     }

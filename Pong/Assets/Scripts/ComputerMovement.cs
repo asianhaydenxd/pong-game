@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ComputerMovement : MonoBehaviour
 {
-    float altitude = 0.0f;
+    public static float altitude = 0.0f;
 
     float triggerDistance = 0.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        triggerDistance = Random.Range(0.0f, 1.5f);
+        triggerDistance = Random.Range(0.0f, 1.0f);
     }
 
     // Update is called once per frame

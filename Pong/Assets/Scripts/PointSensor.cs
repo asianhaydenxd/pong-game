@@ -11,9 +11,15 @@ public class PointSensor : MonoBehaviour
     void OnTriggerEnter(Collider trigger)
     {
         if (trigger.name == "Left Sensor")
-            leftScore++;
-        else if (trigger.name == "Right Sensor")
+        {
             rightScore++;
+            Invoke("ResetScene", 1);
+        }
+        else if (trigger.name == "Right Sensor")
+        {
+            leftScore++;
+            Invoke("ResetScene", 2);
+        }
     }
 
     public Text leftText;
@@ -24,5 +30,20 @@ public class PointSensor : MonoBehaviour
     {
         leftText.text = leftScore.ToString();
         rightText.text = rightScore.ToString();
+    }
+
+    public GameObject leftPaddle;
+    public GameObject rightPaddle;
+
+    void ResetScene()
+    {
+        PlayerMovement.altitude = 0.0f;
+        ComputerMovement.altitude = 0.0f;
+
+        BallMovement.longitude = 0.0f;
+        BallMovement.altitude = 0.0f;
+
+        BallMovement.longitudeSpeed = 20.0f;
+        BallMovement.altitudeSpeed = Random.Range(-1.5f, 1.5f);
     }
 }
