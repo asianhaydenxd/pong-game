@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
+    public AudioSource Beep;
+    public AudioSource Hit1;
+    public AudioSource Hit2;
+
     public static float longitude = 0.0f;
     public static float altitude = 0.0f;
 
@@ -17,6 +21,9 @@ public class BallMovement : MonoBehaviour
     void Start()
     {
         altitudeSpeed = Random.Range(-1.5f, 1.5f);
+
+        Beep.Play();
+
         Invoke("Wait", 1);
     }
 
@@ -38,7 +45,11 @@ public class BallMovement : MonoBehaviour
         altitude = Mathf.Clamp(altitude, -4.75f, 4.75f);
 
         if (Mathf.Abs(altitude) == 4.75f)
+        {
             altitudeSpeed = -altitudeSpeed;
+
+            Hit2.Play();
+        }
 
         transform.position = new Vector3(longitude, altitude, 0.0f);
     }
@@ -47,6 +58,8 @@ public class BallMovement : MonoBehaviour
     {
         if (Mathf.Abs(transform.position.x) > Mathf.Abs(trigger.transform.position.x)) return;
         if (!(trigger.name == "Left Paddle" | trigger.name == "Right Paddle")) return;
+
+        Hit1.Play();
         
         longitudeSpeed = -longitudeSpeed;
 

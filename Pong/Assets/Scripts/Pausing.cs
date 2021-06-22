@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Pausing : MonoBehaviour
 {
+    public AudioSource Beep;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,8 @@ public class Pausing : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Beep.Play();
+
             Time.timeScale = Time.timeScale == 1 ? 0 : 1;
             
             GetComponent<Canvas>().enabled = !GetComponent<Canvas>().enabled;
@@ -24,6 +28,8 @@ public class Pausing : MonoBehaviour
 
     public void OnMainMenuPress()
     {
+        Beep.Play();
+
         PlayerMovement.altitude = 0.0f;
         ComputerMovement.altitude = 0.0f;
 
@@ -43,6 +49,8 @@ public class Pausing : MonoBehaviour
 
     public void OnQuitGamePress()
     {
+        Beep.Play();
+
         Application.Quit();
     }
 }

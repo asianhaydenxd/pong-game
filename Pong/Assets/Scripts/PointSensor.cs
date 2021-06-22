@@ -13,13 +13,25 @@ public class PointSensor : MonoBehaviour
         if (trigger.name == "Left Sensor")
         {
             rightScore++;
-            Invoke("ResetScene", 2);
+            OnSensorTrigger();
         }
         else if (trigger.name == "Right Sensor")
         {
             leftScore++;
-            Invoke("ResetScene", 2);
+            OnSensorTrigger();
         }
+    }
+
+    public AudioSource Beep;
+
+    void OnSensorTrigger()
+    {
+        BallMovement.longitudeSpeed = 0.0f;
+        BallMovement.altitudeSpeed = 0.0f;
+
+        Beep.Play();
+
+        Invoke("ResetScene", 2);
     }
 
     public Text leftText;
@@ -31,9 +43,6 @@ public class PointSensor : MonoBehaviour
         leftText.text = leftScore.ToString();
         rightText.text = rightScore.ToString();
     }
-
-    public GameObject leftPaddle;
-    public GameObject rightPaddle;
 
     void ResetScene()
     {

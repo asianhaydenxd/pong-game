@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TitleScreenAnimation : MonoBehaviour
 {
+    public AudioSource Beep;
+    public AudioSource Hit2;
 
     float longitudeSpeed = 20.0f;
     float altitudeSpeed = 8.0f;
@@ -30,13 +32,23 @@ public class TitleScreenAnimation : MonoBehaviour
         if (Mathf.Abs(longitude) == 8.387f)
         {
             longitudeSpeed = -longitudeSpeed;
+            Hit2.Play();
         }
 
         if (Mathf.Abs(altitude) == 4.5f)
         {
             altitudeSpeed = -altitudeSpeed;
+            Hit2.Play();
         }
 
+        if (Mathf.Abs(longitude) == 8.387f & Mathf.Abs(altitude) == 4.5f)
+            GetComponent<SpriteRenderer>().color = new Color(0.88f, 0.79f, 0.16f);
+
         transform.position = new Vector3(longitude, altitude, 0.0f);
+    }
+
+    void OnSceneLoaded()
+    {
+        Beep.Play();
     }
 }
