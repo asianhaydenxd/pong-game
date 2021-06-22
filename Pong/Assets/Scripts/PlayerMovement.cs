@@ -11,10 +11,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
-            altitude += movementSpeed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.DownArrow))
-            altitude -= movementSpeed * Time.deltaTime;
+        altitude += movementSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
 
         altitude = Mathf.Clamp(altitude, -4.0f, 4.0f);
 
