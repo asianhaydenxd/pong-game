@@ -13,7 +13,7 @@ public class PointSensor : MonoBehaviour
         if (trigger.name == "Left Sensor")
         {
             rightScore++;
-            Invoke("ResetScene", 1);
+            Invoke("ResetScene", 2);
         }
         else if (trigger.name == "Right Sensor")
         {

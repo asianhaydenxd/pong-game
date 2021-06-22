@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameInitiation : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    public void OnButtonPress()
+    public void OnStartButtonPress()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void OnQuitButtonPress()
+    {
+        Application.Quit();
     }
 }
