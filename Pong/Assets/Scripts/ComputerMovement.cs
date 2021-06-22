@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class ComputerMovement : MonoBehaviour
 {
-    public static float altitude = 0.0f;
+    const float triggerRange = 1.5f; // Paddle accuracy setting constant
 
+    public static float altitude = 0.0f;
     float triggerDistance = 0.0f;
 
     // Start is called before the first frame update
@@ -33,6 +34,6 @@ public class ComputerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider trigger)
     {
-        triggerDistance = Random.Range(0.0f, 1.5f);
+        triggerDistance = Random.Range(0.0f, triggerRange);
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
+    public const float ballSpeed = 15.0f; // Ball speed setting constant
+
     public AudioSource Beep;
     public AudioSource Hit1;
     public AudioSource Hit2;
@@ -11,7 +13,7 @@ public class BallMovement : MonoBehaviour
     public static float longitude = 0.0f;
     public static float altitude = 0.0f;
 
-    public static float longitudeSpeed = 20.0f;
+    public static float longitudeSpeed = ballSpeed;
     public static float altitudeSpeed = 0.0f;
 
     const float speedIncrement = 0.0f;

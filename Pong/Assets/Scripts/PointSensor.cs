@@ -60,7 +60,7 @@ public class PointSensor : MonoBehaviour
 
     void DelayBall()
     {
-        BallMovement.longitudeSpeed = 20.0f;
+        BallMovement.longitudeSpeed = BallMovement.ballSpeed;
         BallMovement.altitudeSpeed = Random.Range(-1.5f, 1.5f);
     }
 }
