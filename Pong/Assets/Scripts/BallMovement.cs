@@ -24,12 +24,12 @@ public class BallMovement : MonoBehaviour
 
         Beep.Play();
 
-        Invoke("Wait", 1);
+        Invoke("StopWait", 1);
     }
 
     bool wait = true;
 
-    void Wait()
+    void StopWait()
     {
         wait = false;
     }
