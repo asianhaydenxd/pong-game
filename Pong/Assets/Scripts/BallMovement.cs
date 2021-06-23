@@ -23,9 +23,6 @@ public class BallMovement : MonoBehaviour
     void Start()
     {
         altitudeSpeed = Random.Range(-1.5f, 1.5f);
-
-        Beep.Play();
-
         Invoke("StopWait", 1);
     }
 

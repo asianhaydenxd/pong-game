@@ -46,9 +46,4 @@ public class TitleScreenAnimation : MonoBehaviour
 
         transform.position = new Vector3(longitude, altitude, 0.0f);
     }
-
-    void OnSceneLoaded()
-    {
-        Beep.Play();
-    }
 }

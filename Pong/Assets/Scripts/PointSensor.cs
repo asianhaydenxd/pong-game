@@ -5,8 +5,15 @@ using UnityEngine.UI;
 
 public class PointSensor : MonoBehaviour
 {
+    const int goal = 10; // Goal setting constant
+
     public static int leftScore = 0;
     public static int rightScore = 0;
+
+    void Start()
+    {
+        GameObject.Find("Transition").GetComponent<Canvas>().enabled = true; // Make transition sprite visible
+    }
 
     void OnTriggerEnter(Collider trigger)
     {
@@ -24,6 +31,8 @@ public class PointSensor : MonoBehaviour
 
     public AudioSource Beep;
 
+    public Text labelText;
+
     void OnSensorTrigger()
     {
         BallMovement.longitudeSpeed = 0.0f;
@@ -31,7 +40,18 @@ public class PointSensor : MonoBehaviour
 
         Beep.Play();
 
-        Invoke("ResetScene", 2);
+        if (leftScore == goal)
+        {
+            labelText.text = "Player\nWins";
+            StartCoroutine("AnnounceWinner");
+        }
+        else if (rightScore == goal)
+        {
+            labelText.text = "Computer\nWins";
+            StartCoroutine("AnnounceWinner");
+        }
+        else
+            Invoke("ResetScene", 2);
     }
 
     public Text leftText;
@@ -62,5 +82,15 @@ public class PointSensor : MonoBehaviour
     {
         BallMovement.longitudeSpeed = BallMovement.ballSpeed;
         BallMovement.altitudeSpeed = Random.Range(-1.5f, 1.5f);
+    }
+
+    public Animator winAnimation;
+
+    IEnumerator AnnounceWinner()
+    {
+        winAnimation.SetTrigger("Win");
+        yield return new WaitForSeconds(2.5f);
+
+        GameObject.Find("Pause Menu").GetComponent<Pausing>().GoToMenu();
     }
 }
