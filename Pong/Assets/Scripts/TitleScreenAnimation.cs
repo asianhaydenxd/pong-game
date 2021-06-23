@@ -41,9 +41,6 @@ public class TitleScreenAnimation : MonoBehaviour
             Hit2.Play();
         }
 
-        if (Mathf.Abs(longitude) == 8.387f & Mathf.Abs(altitude) == 4.5f)
-            GetComponent<SpriteRenderer>().color = new Color(0.88f, 0.79f, 0.16f);
-
         transform.position = new Vector3(longitude, altitude, 0.0f);
     }
 }
