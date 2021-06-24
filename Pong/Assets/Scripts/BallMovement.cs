@@ -50,22 +50,19 @@ public class BallMovement : MonoBehaviour
         transform.position = new Vector3(longitude, altitude, 0.0f);
     }
 
+    // OnTriggerEnter is called when the ball hits something
     void OnTriggerEnter(Collider trigger)
     {
+        // Make sure ball is hitting a paddle and is in front of the paddles (guard clauses)
         if (Mathf.Abs(transform.position.x) > Mathf.Abs(trigger.transform.position.x)) return;
         if (!(trigger.name == "Left Paddle" | trigger.name == "Right Paddle")) return;
 
         Hit1.Play();
         
+        // Reverse ball direction and adjust the vertical speed
         longitudeSpeed = -longitudeSpeed;
-
-        if (longitudeSpeed >= 0.0f)
-            longitudeSpeed += speedIncrement;
-        else
-            longitudeSpeed -= speedIncrement;
-
+        longitudeSpeed += speedIncrement * Mathf.Sign(longitudeSpeed);
         altitudeSpeed += 3 * (transform.position.y - trigger.transform.position.y);
-        
         altitudeSpeed = Mathf.Clamp(altitudeSpeed, -altitudeSpeedClamp, altitudeSpeedClamp);
     }
 }
