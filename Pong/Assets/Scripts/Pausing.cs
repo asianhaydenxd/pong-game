@@ -70,8 +70,8 @@ public class Pausing : MonoBehaviour
         BallMovement.longitude = 0.0f;
         BallMovement.altitude = 0.0f;
 
-        BallMovement.longitudeSpeed = BallMovement.ballSpeed;
-        BallMovement.altitudeSpeed = Random.Range(-1.5f, 1.5f);
+        BallMovement.longitudeSpeed = 0.0f;
+        BallMovement.altitudeSpeed = 0.0f;
 
         PointSensor.leftScore = 0;
         PointSensor.rightScore = 0;

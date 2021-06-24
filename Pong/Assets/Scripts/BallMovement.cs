@@ -13,7 +13,7 @@ public class BallMovement : MonoBehaviour
     public static float longitude = 0.0f;
     public static float altitude = 0.0f;
 
-    public static float longitudeSpeed = ballSpeed;
+    public static float longitudeSpeed = 0.0f;
     public static float altitudeSpeed = 0.0f;
 
     const float speedIncrement = 0.0f;
@@ -22,22 +22,19 @@ public class BallMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        altitudeSpeed = Random.Range(-1.5f, 1.5f);
-        Invoke("StopWait", 1.0f);
+        Invoke("ReleaseBall", 1.0f);
     }
 
-    bool wait = true;
-
-    void StopWait()
+    // ReleaseBall is called one second after Start
+    void ReleaseBall()
     {
-        wait = false;
+        longitudeSpeed = ballSpeed;
+        altitudeSpeed = Random.Range(-1.5f, 1.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (wait) return;
-
         longitude += longitudeSpeed * Time.deltaTime;
         altitude += altitudeSpeed * Time.deltaTime;
 
