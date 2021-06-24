@@ -6,6 +6,9 @@ public class BallMovement : MonoBehaviour
 {
     public const float ballSpeed = 15.0f; // Ball speed setting constant
 
+    const float speedIncrement = 0.0f; // Ball acceleration setting constant
+    const float altitudeSpeedClamp = 16.0f; // Maximum vertical velocity setting constant
+
     public AudioSource Beep;
     public AudioSource Hit1;
     public AudioSource Hit2;
@@ -15,9 +18,6 @@ public class BallMovement : MonoBehaviour
 
     public static float longitudeSpeed = 0.0f;
     public static float altitudeSpeed = 0.0f;
-
-    const float speedIncrement = 0.0f;
-    const float altitudeSpeedClamp = 16.0f;
 
     // Start is called before the first frame update
     void Start()
