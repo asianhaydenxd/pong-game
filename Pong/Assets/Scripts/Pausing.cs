@@ -41,7 +41,7 @@ public class Pausing : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator LoadMenu()
+    IEnumerator LoadMenu() // Called on both pause menu button press and game completion
     {   
         // Set up temporary variable for player movement
         float movementSpeedTemp = PlayerMovement.movementSpeed;

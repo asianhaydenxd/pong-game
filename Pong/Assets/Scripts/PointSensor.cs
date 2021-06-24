@@ -15,7 +15,8 @@ public class PointSensor : MonoBehaviour
 
     void Start()
     {
-        GameObject.Find("Transition").GetComponent<Canvas>().enabled = true; // Make transition sprite visible
+        // Make transition sprite visible
+        GameObject.Find("Transition").GetComponent<Canvas>().enabled = true;
     }
 
     void OnTriggerEnter(Collider trigger)
