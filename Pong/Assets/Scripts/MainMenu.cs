@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator PressStart()
     {
         Beep.Play();
-        wipeIn.SetTrigger("Exit");
+        wipeIn.SetTrigger("SlideIn");
         yield return new WaitForSeconds(0.75f);
 
         SceneManager.LoadScene(1);

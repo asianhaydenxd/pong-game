@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class PointSensor : MonoBehaviour
 {
-    const int goal = 10; // Goal setting constant
+    const int goal = 2; // Goal setting constant
 
     public static int leftScore = 0;
     public static int rightScore = 0;
+
+    public Animator wipe;
+    public Animator winSlide;
 
     void Start()
     {
@@ -51,7 +54,7 @@ public class PointSensor : MonoBehaviour
             StartCoroutine("AnnounceWinner");
         }
         else
-            Invoke("ResetScene", 2);
+            StartCoroutine("ResetScene");
     }
 
     public Text leftText;
@@ -64,8 +67,11 @@ public class PointSensor : MonoBehaviour
         rightText.text = rightScore.ToString();
     }
 
-    void ResetScene()
+    IEnumerator ResetScene()
     {
+        wipe.SetTrigger("SlideIn");
+        yield return new WaitForSeconds(0.67f); // Animation lasts 2/3 (0.67) seconds
+
         PlayerMovement.altitude = 0.0f;
         ComputerMovement.altitude = 0.0f;
 
@@ -75,22 +81,19 @@ public class PointSensor : MonoBehaviour
         BallMovement.longitudeSpeed = 0.0f;
         BallMovement.altitudeSpeed = 0.0f;
 
-        Invoke("DelayBall", 1);
-    }
+        wipe.SetTrigger("SlideOut");
+        yield return new WaitForSeconds(1.67f); // Animation duration + 1 second delay before restarting
 
-    void DelayBall()
-    {
         BallMovement.longitudeSpeed = BallMovement.ballSpeed;
         BallMovement.altitudeSpeed = Random.Range(-1.5f, 1.5f);
     }
 
-    public Animator winAnimation;
-
     IEnumerator AnnounceWinner()
     {
-        winAnimation.SetTrigger("Win");
-        yield return new WaitForSeconds(2.5f);
+        winSlide.SetTrigger("Win");
+        yield return new WaitForSeconds(2.0f);
 
-        GameObject.Find("Pause Menu").GetComponent<Pausing>().GoToMenu();
+        // Loads the main menu using the function from the script Pausing.cs
+        GameObject.Find("Pause Menu").GetComponent<Pausing>().StartCoroutine("LoadMenu");
     }
 }

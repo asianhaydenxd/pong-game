@@ -247,11 +247,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6972be2e52ce881409d497450a2d963f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wipe: {fileID: 2064268288}
+  winSlide: {fileID: 2063896222}
   Beep: {fileID: 1791515933}
   labelText: {fileID: 2063896220}
   leftText: {fileID: 2031539848}
   rightText: {fileID: 847678561}
-  winAnimation: {fileID: 2063896222}
 --- !u!1 &200993737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,7 +2527,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '<Blank>
+  m_Text: '_
 
     Wins'
 --- !u!222 &2063896221

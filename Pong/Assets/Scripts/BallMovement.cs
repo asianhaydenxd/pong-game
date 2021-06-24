@@ -23,7 +23,7 @@ public class BallMovement : MonoBehaviour
     void Start()
     {
         altitudeSpeed = Random.Range(-1.5f, 1.5f);
-        Invoke("StopWait", 1);
+        Invoke("StopWait", 1.0f);
     }
 
     bool wait = true;
