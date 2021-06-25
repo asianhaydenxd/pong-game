@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    public const float ballSpeed = 15.0f; // Ball speed setting constant
-
-    const float speedIncrement = 0.0f; // Ball acceleration setting constant
-    const float altitudeSpeedClamp = 16.0f; // Maximum vertical velocity setting constant
+    public static float ballSpeed; // Ball speed setting constant
+    float speedIncrement; // Ball acceleration setting constant
+    float verticalClamp; // Maximum vertical velocity setting constant
 
     public AudioSource Beep;
     public AudioSource Hit1;
@@ -22,6 +21,11 @@ public class BallMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Update from PlayerPrefs
+        ballSpeed = PlayerPrefs.GetFloat("BallSpeed", 15.0f);
+        speedIncrement = PlayerPrefs.GetFloat("SpeedIncrement", 0.0f);
+        verticalClamp = PlayerPrefs.GetFloat("VerticalClamp", 16.0f);
+
         Invoke("ReleaseBall", 1.0f);
     }
 
@@ -63,6 +67,6 @@ public class BallMovement : MonoBehaviour
         longitudeSpeed = -longitudeSpeed;
         longitudeSpeed += speedIncrement * Mathf.Sign(longitudeSpeed);
         altitudeSpeed += 3 * (transform.position.y - trigger.transform.position.y);
-        altitudeSpeed = Mathf.Clamp(altitudeSpeed, -altitudeSpeedClamp, altitudeSpeedClamp);
+        altitudeSpeed = Mathf.Clamp(altitudeSpeed, -verticalClamp, verticalClamp);
     }
 }

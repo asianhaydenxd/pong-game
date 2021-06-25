@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ComputerMovement : MonoBehaviour
 {
-    const float triggerRange = 1.5f; // Paddle accuracy setting constant
+    float triggerRange; // Paddle accuracy setting constant
 
     public static float altitude = 0.0f;
     float triggerDistance = 0.0f;
@@ -12,6 +12,7 @@ public class ComputerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        triggerRange = PlayerPrefs.GetFloat("TriggerRange", 1.5f); // Update from PlayerPrefs
         triggerDistance = Random.Range(0.0f, 1.0f);
     }
 

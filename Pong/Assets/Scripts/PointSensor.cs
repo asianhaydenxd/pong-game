@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PointSensor : MonoBehaviour
 {
-    const int goal = 2; // Goal setting constant
+    int goal; // Goal setting constant (set to 2 for testing purposes)
 
     public static int leftScore = 0;
     public static int rightScore = 0;
@@ -15,8 +15,8 @@ public class PointSensor : MonoBehaviour
 
     void Start()
     {
-        // Make transition sprite visible
-        GameObject.Find("Transition").GetComponent<Canvas>().enabled = true;
+        goal = PlayerPrefs.GetInt("Goal", 2); // Update from PlayerPrefs
+        GameObject.Find("Transition").GetComponent<Canvas>().enabled = true; // Make transition sprite visible
     }
 
     void OnTriggerEnter(Collider trigger)
