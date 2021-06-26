@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public AudioSource Beep;
 
-    public Animator wipeIn;
+    public Animator wipe;
     
     void Start()
     {
@@ -20,6 +20,11 @@ public class MainMenu : MonoBehaviour
         StartCoroutine("PressStart");
     }
 
+    public void OnSettingsButtonPress()
+    {
+        StartCoroutine("PressSettings");
+    }
+
     public void OnQuitButtonPress()
     {
         Application.Quit();
@@ -29,9 +34,19 @@ public class MainMenu : MonoBehaviour
     {
         Beep.Play();
         
-        wipeIn.SetTrigger("SlideIn");
-        yield return new WaitForSeconds(0.75f);
+        wipe.SetTrigger("SlideIn");
+        yield return new WaitForSeconds(0.67f);
 
         SceneManager.LoadScene(1);
+    }
+
+    IEnumerator PressSettings()
+    {
+        Beep.Play();
+        
+        wipe.SetTrigger("SlideIn");
+        yield return new WaitForSeconds(0.67f);
+
+        SceneManager.LoadScene(2);
     }
 }
