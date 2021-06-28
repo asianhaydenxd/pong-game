@@ -13,11 +13,14 @@ public class PointSensor : MonoBehaviour
     public Animator wipe;
     public Animator winSlide;
 
-    bool versusBot = PlayerPrefs.GetInt("VersusBot", 1) != 0;
+    bool versusBot;
 
     void Start()
     {
-        goal = PlayerPrefs.GetInt("PointGoal", 10); // Update from PlayerPrefs
+        // Update from PlayerPrefs
+        goal = PlayerPrefs.GetInt("PointGoal", 10);
+        versusBot = PlayerPrefs.GetInt("VersusBot", 1) != 0;
+        
         GameObject.Find("Transition").GetComponent<Canvas>().enabled = true; // Make transition sprite visible
     }
 
