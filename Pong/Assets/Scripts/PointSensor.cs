@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PointSensor : MonoBehaviour
 {
-    int goal; // Goal setting constant (set to 2 for testing purposes)
+    int goal; // Goal setting constant
 
     public static int leftScore = 0;
     public static int rightScore = 0;
@@ -15,7 +15,7 @@ public class PointSensor : MonoBehaviour
 
     void Start()
     {
-        goal = PlayerPrefs.GetInt("Goal", 2); // Update from PlayerPrefs
+        goal = PlayerPrefs.GetInt("PointGoal", 10); // Update from PlayerPrefs
         GameObject.Find("Transition").GetComponent<Canvas>().enabled = true; // Make transition sprite visible
     }
 

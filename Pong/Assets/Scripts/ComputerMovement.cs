@@ -12,7 +12,7 @@ public class ComputerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        triggerRange = PlayerPrefs.GetFloat("TriggerRange", 1.5f); // Update from PlayerPrefs
+        triggerRange = PlayerPrefs.GetFloat("ComputerAccuracy", 1.5f); // Update from PlayerPrefs
         triggerDistance = Random.Range(0.0f, 1.0f);
     }
 

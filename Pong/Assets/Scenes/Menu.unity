@@ -349,10 +349,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8301887, g: 0.5286579, b: 0.5286579, a: 1}
-    m_PressedColor: {r: 0.6792453, g: 0.30437878, b: 0.30437878, a: 1}
-    m_SelectedColor: {r: 0.6981132, g: 0.3721075, b: 0.3721075, a: 1}
-    m_DisabledColor: {r: 0.7169812, g: 0.44980422, b: 0.44980422, a: 0.5019608}
+    m_HighlightedColor: {r: 0.5294118, g: 0.6455245, b: 0.83137256, a: 1}
+    m_PressedColor: {r: 0.30588236, g: 0.45192787, b: 0.6784314, a: 1}
+    m_SelectedColor: {r: 0.37254903, g: 0.4400454, b: 0.69803923, a: 1}
+    m_DisabledColor: {r: 0.4509804, g: 0.5560454, b: 0.7176471, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.05
   m_SpriteState:
@@ -373,7 +373,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1830552136}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: OnQuitButtonPress
+        m_MethodName: OnSettingsButtonPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Beep: {fileID: 435651122}
-  wipeIn: {fileID: 114215647}
+  wipe: {fileID: 114215647}
 --- !u!1 &2092952655
 GameObject:
   m_ObjectHideFlags: 0

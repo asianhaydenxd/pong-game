@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movementSpeed = PlayerPrefs.GetFloat("MovementSpeed", 12.0f); // Update from PlayerPrefs
+        movementSpeed = PlayerPrefs.GetFloat("PaddleSpeed", 12.0f); // Update from PlayerPrefs
     }
 
     // Update is called once per frame
