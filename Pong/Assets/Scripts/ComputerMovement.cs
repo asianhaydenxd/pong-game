@@ -19,18 +19,35 @@ public class ComputerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerPrefs.GetInt("VersusBot") != 0)
+            MoveByComputer();
+        else
+            MoveByPlayer();
+        
+        altitude = Mathf.Clamp(altitude, -4.0f, 4.0f);
+        
+        transform.position = new Vector3(7.0f, altitude, 0.0f);
+    }
+
+    void MoveByComputer()
+    {
         if (BallMovement.longitudeSpeed < 0) return;
         if (BallMovement.longitude > transform.position.x) return;
 
         if (BallMovement.altitude > altitude + triggerDistance)
             altitude += PlayerMovement.movementSpeed * Time.deltaTime;
-
-        if (BallMovement.altitude < altitude - triggerDistance)
+            
+        else if (BallMovement.altitude < altitude - triggerDistance)
             altitude -= PlayerMovement.movementSpeed * Time.deltaTime;
-        
-        altitude = Mathf.Clamp(altitude, -4.0f, 4.0f);
-        
-        transform.position = new Vector3(7.0f, altitude, 0.0f);
+    }
+
+    void MoveByPlayer()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+            altitude += PlayerMovement.movementSpeed * Time.deltaTime;
+
+        else if (Input.GetKey(KeyCode.DownArrow))
+            altitude -= PlayerMovement.movementSpeed * Time.deltaTime;
     }
 
     void OnTriggerEnter(Collider trigger)

@@ -13,6 +13,8 @@ public class PointSensor : MonoBehaviour
     public Animator wipe;
     public Animator winSlide;
 
+    bool versusBot = PlayerPrefs.GetInt("VersusBot", 1) != 0;
+
     void Start()
     {
         goal = PlayerPrefs.GetInt("PointGoal", 10); // Update from PlayerPrefs
@@ -46,12 +48,12 @@ public class PointSensor : MonoBehaviour
 
         if (leftScore == goal)
         {
-            labelText.text = "Player\nWins";
+            labelText.text = versusBot ? "Player\nWins" : "Player 1\nWins";
             StartCoroutine("AnnounceWinner");
         }
         else if (rightScore == goal)
         {
-            labelText.text = "Computer\nWins";
+            labelText.text = versusBot ? "Computer\nWins" : "Player 2\nWins";
             StartCoroutine("AnnounceWinner");
         }
         else

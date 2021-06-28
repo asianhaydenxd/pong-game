@@ -18,7 +18,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Move the paddle and keep on screen
-        altitude += movementSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
+        if (PlayerPrefs.GetInt("VersusBot", 1) != 0)
+            altitude += movementSpeed * Time.deltaTime * Input.GetAxisRaw("Vertical");
+        else
+        {
+            if (Input.GetKey(KeyCode.W))
+                altitude += movementSpeed * Time.deltaTime;
+            else if (Input.GetKey(KeyCode.S))
+                altitude -= movementSpeed * Time.deltaTime;
+        }
+
         altitude = Mathf.Clamp(altitude, -4.0f, 4.0f);
 
         // Update the paddle's position
