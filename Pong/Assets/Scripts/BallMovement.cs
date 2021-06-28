@@ -23,8 +23,8 @@ public class BallMovement : MonoBehaviour
     {
         // Update from PlayerPrefs
         ballSpeed = PlayerPrefs.GetFloat("BallSpeed", 15.0f);
-        speedIncrement = PlayerPrefs.GetFloat("SpeedIncrement", 0.0f);
-        verticalClamp = PlayerPrefs.GetFloat("VerticalClamp", 16.0f);
+        speedIncrement = PlayerPrefs.GetFloat("BallAcceleration", 0.0f);
+        verticalClamp = PlayerPrefs.GetFloat("MaxVerticalSpeed", 16.0f);
 
         Invoke("ReleaseBall", 1.0f);
     }
