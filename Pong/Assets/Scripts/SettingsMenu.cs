@@ -28,7 +28,7 @@ public class SettingsMenu : MonoBehaviour
 
         computerAccuracy.GetComponent<Slider>().value = 4.25f - PlayerPrefs.GetFloat("ComputerAccuracy", 1.5f); // Accuracy is flipped for clarity
 
-        pointGoal.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("PointGoal", 10) - 2;
+        pointGoal.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("PointGoal", 10) - 1;
         versusBot.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("VersusBot", 1) != 0;
     }
 
@@ -47,7 +47,7 @@ public class SettingsMenu : MonoBehaviour
 
         PlayerPrefs.SetFloat("ComputerAccuracy", 4.25f - computerAccuracy.GetComponent<Slider>().value); // Accuracy is flipped for clarity
 
-        PlayerPrefs.SetInt("PointGoal", pointGoal.GetComponent<Dropdown>().value + 2);
+        PlayerPrefs.SetInt("PointGoal", pointGoal.GetComponent<Dropdown>().value + 1);
         PlayerPrefs.SetInt("VersusBot", versusBot.GetComponent<Toggle>().isOn ? 1 : 0);
 
         StartCoroutine("Exit");
