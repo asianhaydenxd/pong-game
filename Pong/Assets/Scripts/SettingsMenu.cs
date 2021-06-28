@@ -25,7 +25,8 @@ public class SettingsMenu : MonoBehaviour
         ballAcceleration.GetComponent<Slider>().value = PlayerPrefs.GetFloat("BallAcceleration", 0.0f);
         maxVerticalSpeed.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MaxVerticalSpeed", 16.0f);
         paddleSpeed.GetComponent<Slider>().value = PlayerPrefs.GetFloat("PaddleSpeed", 12.0f);
-        computerAccuracy.GetComponent<Slider>().value = PlayerPrefs.GetFloat("ComputerAccuracy", 1.5f);
+
+        computerAccuracy.GetComponent<Slider>().value = 4.25f - PlayerPrefs.GetFloat("ComputerAccuracy", 1.5f); // Accuracy is flipped for clarity
 
         pointGoal.GetComponent<Dropdown>().value = PlayerPrefs.GetInt("PointGoal", 10) - 2;
         versusBot.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("VersusBot", 1) != 0;
@@ -43,7 +44,8 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("BallAcceleration", ballAcceleration.GetComponent<Slider>().value);
         PlayerPrefs.SetFloat("MaxVerticalSpeed", maxVerticalSpeed.GetComponent<Slider>().value);
         PlayerPrefs.SetFloat("PaddleSpeed", paddleSpeed.GetComponent<Slider>().value);
-        PlayerPrefs.SetFloat("ComputerAccuracy", computerAccuracy.GetComponent<Slider>().value);
+
+        PlayerPrefs.SetFloat("ComputerAccuracy", 4.25f - computerAccuracy.GetComponent<Slider>().value); // Accuracy is flipped for clarity
 
         PlayerPrefs.SetInt("PointGoal", pointGoal.GetComponent<Dropdown>().value + 2);
         PlayerPrefs.SetInt("VersusBot", versusBot.GetComponent<Toggle>().isOn ? 1 : 0);
